@@ -1,0 +1,22 @@
+{
+  "name": "playwright_allianz_022026",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tredgate/playwright_allianz_022026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tredgate/playwright_allianz_022026/issues"
+  },
+  "homepage": "https://github.com/tredgate/playwright_allianz_022026#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.2.3"
+  }
+}
