@@ -2,7 +2,9 @@
   "name": "playwright_allianz_022026",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:ui": "playwright test --ui"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tredgate/playwright_allianz_022026.git"
