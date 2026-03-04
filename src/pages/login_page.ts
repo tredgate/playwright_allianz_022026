@@ -1,6 +1,6 @@
 // src/pages/login_page.ts
 
-import { Locator, Page } from "@playwright/test";
+import { test, Locator, Page, expect } from "@playwright/test";
 import { DashboardPage } from "./dashboard_page.ts";
 import { LostPasswordPage } from "./lost_password_page.ts";
 
@@ -11,6 +11,7 @@ export class LoginPage {
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
   readonly lostPasswordButton: Locator;
+  readonly pageHeader: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,6 +19,7 @@ export class LoginPage {
     this.passwordInput = page.locator("#password");
     this.loginButton = page.locator('[type="submit"]');
     this.lostPasswordButton = page.locator("#forget_password");
+    this.pageHeader = page.locator(".form-title");
   }
 
   // Při vytváření metod doporučím přístup začít s atomickými (malými) metodami s jedním krokem a pak vytvářet sdružující metody
@@ -46,9 +48,13 @@ export class LoginPage {
 
   // Sloučená (group) metoda -> slučuje jednotlivé kroky pro testy, které jen proletí přihlášením a nepotřebují ho testovat
   async login(username: string, password: string) {
-    await this.fillUsername(username);
-    await this.fillPassword(password);
-    return await this.clickLogin();
+    await test.step("Login", async () => {
+      await this.fillUsername(username);
+      await this.fillPassword(password);
+      await this.clickLogin();
+    });
+
+    return new DashboardPage(this.page);
     // Je možné i:
     // return new DashboardPage(this.page);
   }
@@ -56,5 +62,11 @@ export class LoginPage {
   async clickLostPassword() {
     await this.lostPasswordButton.click();
     return new LostPasswordPage(this.page);
+  }
+
+  async pageHeaderHasText(headerText: string) {
+    await expect(this.pageHeader, "Page Header has Text").toHaveText(
+      headerText,
+    );
   }
 }
