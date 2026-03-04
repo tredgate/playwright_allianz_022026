@@ -55,4 +55,58 @@ test.describe("Asserts - Testing in Playwright", () => {
       usernameValue,
     );
   });
+
+  test("Soft Asserts", async ({ page }) => {
+    const welcomePageHeader = page.locator("#welcome-page-header");
+    await expect
+      .soft(welcomePageHeader, "Welcome Page Header has Text")
+      .toHaveText("Vítej v testovací aplikaci");
+
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage
+      .clickProfile()
+      .then((dashboard) => dashboard.clickLogout());
+  });
+
+  test("Negative Asserts", async ({ page }) => {
+    const welcomePageHeader = page.locator("#welcome-page-header");
+    await expect(
+      welcomePageHeader,
+      "Welcome Page Header does not have Text",
+    ).not.toContainText("ERROR");
+  });
 });
+
+test("Page Objects Asserts", async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  const pageHeaderText = "Login";
+
+  await loginPage
+    .open()
+    .then((login) => login.pageHeaderHasText(pageHeaderText));
+});
+
+/*
+Cvičení - testy na nevyplněná pole (⌛6:00)
+Vytvoř nový testovací soubor ve složce exercises: page_object_asserts_exercise.spec.ts
+Vytvoř nový test:
+Otevře PMTool
+Přihlásí se
+Zkontroluj:
+Viditelnost profilového tlačítka, které používáme pro odhlášení.
+Text názvu aplikace: TEG Project Management (lokátor: .navbar-brand)
+
+* Testy budou vytvořené v Page Objektech, vytvoř do DashboardPage metodu na kontrolu.
+
+
+Výzva
+V challenges složce vytvoř nový test soubor: ats_not_displayed_errors_challenge
+Vytvoř test, který:
+Otevře stránku: https://automationteststore.com/
+Otevři stránku s přihlášením
+Zkontroluj, že není vidět zpráva: Error: Incorrect login or password provided.
+Spusť test
+
+* Použij Page Objekty
+
+*/
