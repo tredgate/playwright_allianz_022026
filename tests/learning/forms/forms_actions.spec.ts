@@ -58,27 +58,3 @@ test.describe("Forms Actions", () => {
     await page.waitForTimeout(2000); // ! V reálu toto nepoužíváme, používáme kvůli tomu, abychom si mohli ukázat výsledek.
   });
 });
-
-/*
-
-Cvičení - vyplnění formuláře(⌛10:00)
-Vytvořte nový test, který vyplní formulář na adrese: https://tredgate.com/webtrain/contact.html
-
-Složka: tests/exercises
-Soubor: form_exercise.spec.ts  
-
-V testu:
-Vyplňte všechna pole
-Vyberte roli
-Zaklikněte subscribe to newsletter
-Po odeslání zkontrolujte viditelnost potvrzující zprávy
-
-Test nemusí být v Page Objectech.
-
-
-Výzva
-Zmigrujte předchozí test form_exercise.spec.ts  do Page Objectů s Fluent Interface.
-Vytvořte test.step pro vyplnění formuláře a použijte v testu.
-
-
-*/
