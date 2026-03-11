@@ -34,6 +34,7 @@ export default defineConfig({
     navigationTimeout: 30_000,
     screenshot: "only-on-failure",
     video: "off",
+    ignoreHTTPSErrors: true,
   },
   timeout: 4 * 60 * 1000,
   expect: {
