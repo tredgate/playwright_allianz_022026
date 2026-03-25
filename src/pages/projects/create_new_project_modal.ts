@@ -105,6 +105,8 @@ export class CreateNewProjectModal {
   }
 
   async fillStartDate(startDate: string): Promise<this> {
+    await this.startDateInput.click();
+    await this.startDateInput.press("Escape");
     await this.startDateInput.fill(startDate);
     return this;
   }
