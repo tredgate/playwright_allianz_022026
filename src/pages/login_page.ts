@@ -68,5 +68,6 @@ export class LoginPage {
     await expect(this.pageHeader, "Page Header has Text").toHaveText(
       headerText,
     );
+    return this;
   }
 }

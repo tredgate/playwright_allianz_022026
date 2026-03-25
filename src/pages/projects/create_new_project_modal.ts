@@ -94,7 +94,19 @@ export class CreateNewProjectModal {
     return this;
   }
 
+  async selectPriorityByLabel(priorityLabel: string) {
+    await this.prioritySelect.selectOption({ label: priorityLabel });
+    return this;
+  }
+
+  async selectStatusByLabel(statusLabel: string) {
+    await this.statusSelect.selectOption({ label: statusLabel });
+    return this;
+  }
+
   async fillStartDate(startDate: string): Promise<this> {
+    await this.startDateInput.click();
+    await this.startDateInput.press("Escape");
     await this.startDateInput.fill(startDate);
     return this;
   }
