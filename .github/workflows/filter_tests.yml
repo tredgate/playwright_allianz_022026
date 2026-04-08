@@ -3,6 +3,9 @@ on: workflow_dispatch
 jobs:
   test:
     timeout-minutes: 60
+    env:
+      PMTOOL_USERNAME: ${{ secrets.PMTOOL_USERNAME }}
+      PMTOOL_PASSWORD: ${{ secrets.PMTOOL_PASSWORD }}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
